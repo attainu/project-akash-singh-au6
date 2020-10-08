@@ -1,0 +1,46 @@
+.left {
+  min-width: 250px;
+  max-width: 275px;
+
+  &.lg {
+    min-width: 350px;
+    max-width: 375px;
+  }
+
+  &.none {
+    .padding {
+      @apply pr-8;
+    }
+  }
+
+  &.default {
+    .padding {
+      @apply px-8;
+    }
+    main.padding {
+      @apply mt-10;
+    }
+  }
+
+  ul {
+    li {
+      @apply flex flex-row items-center h-10 rounded-lg text-gray-600 cursor-pointer transition-colors duration-200 ease-in-out;
+
+      &:hover {
+        @apply text-gray-800;
+      }
+    }
+    .nuxt-link-active li {
+      @apply text-indigo-700;
+    }
+  }
+  svg {
+    @apply w-4 h-4 fill-current inline ml-2 mr-3;
+  }
+  .line {
+    @apply border-b-2 border-gray-200 my-5;
+  }
+ h2 {
+    @apply font-semibold flex uppercase tracking-wider text-xs;
+  }
+}

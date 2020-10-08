@@ -1,0 +1,28 @@
+.left {
+  min-width: 250px;
+  max-width: 275px;
+}
+
+ul {
+  @apply flex flex-row items-center h-10 rounded-lg text-gray-600 cursor-pointer transition-colors duration-200 ease-in-out;
+}
+
+li {
+  @apply flex flex-row items-center h-10 rounded-lg text-gray-600 cursor-pointer transition-colors duration-200 ease-in-out;
+  @apply text-indigo-700;
+}
+li:hover {
+  @apply text-gray-800;
+}
+.nuxt-link-active {
+  @apply text-indigo-700;
+}
+svg {
+  @apply w-4 h-4 fill-current inline ml-2 mr-3;
+}
+.line {
+  @apply border-b-2 border-gray-200 my-5;
+}
+h2 {
+  @apply font-semibold flex uppercase tracking-wider text-xs;
+}

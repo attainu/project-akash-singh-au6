@@ -1,0 +1,59 @@
+.auto {
+  @apply w-auto;
+}
+
+.full {
+  @apply w-screen items-center;
+}
+
+.sm {
+  @apply rounded-sm;
+  @apply px-3 py-1 text-sm rounded-md leading-5;
+}
+.base  {
+  @apply px-4 py-2 text-base rounded-md leading-6;
+}
+.lg {
+  @apply px-4 py-2 text-xl rounded-md leading-10;
+}
+
+.primary {
+  @apply border-transparent bg-indigo-600 text-white;
+}
+.primary:hover {
+  @apply bg-indigo-500;
+}
+.primary:active:focus {
+  @apply border-indigo-700 shadow-outline;
+}
+.success {
+  @apply border-transparent bg-green-600 text-white;
+}
+
+.success:hover {
+  @apply bg-green-500;
+}
+.success:active:focus {
+  @apply border-green-600 shadow-outline;
+}
+
+.danger {
+  @apply border-transparent bg-red-600 text-white;
+}
+
+.danger:hover {
+  @apply bg-red-500;
+}
+.danger:active:focus {
+  @apply border-red-700 shadow-outline;
+}
+
+.light {
+  @apply border border-gray-300 bg-white text-gray-700;
+}
+.light:hover {
+  @apply text-gray-600;
+}
+.light:active:focus {
+  @apply border-blue-300 shadow-outline;
+}

@@ -1,0 +1,7 @@
+#play {
+  display: none;
+}
+
+#thumbnail-container:hover #play {
+  display: block;
+}

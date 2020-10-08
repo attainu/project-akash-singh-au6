@@ -1,0 +1,27 @@
+::v-deep nav section {
+  @apply border-gray-100 border-t-2 leading-5 text-sm;
+
+  &:first-of-type {
+    @apply border-none;
+  }
+
+  a {
+    @apply block w-full px-4 py-4 text-gray-700 font-medium;
+
+    @screen sm {
+      @apply py-2 font-normal;
+    }
+
+    svg {
+      @apply inline-block fill-current w-4 h-4 mr-2;
+    }
+  }
+
+  a:hover {
+    @apply bg-gray-100 text-gray-900;
+
+    svg {
+      @apply text-gray-900;
+    }
+  }
+}

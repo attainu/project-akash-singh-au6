@@ -1,0 +1,37 @@
+nav {
+  @apply leading-5 text-sm;
+}
+
+section {
+  @apply  text-sm;
+}
+  
+a {
+  @apply block w-full px-4 py-4 text-gray-700 font-medium;  
+}
+
+svg {
+  @apply inline-block fill-current w-4 h-4 mr-2;
+}
+
+svg:hover {
+  @apply text-gray-900;
+}
+
+/* a {
+  @ {
+    @apply py-2 font-normal;
+  }
+} */
+  
+a:hover {
+  @apply bg-gray-100 text-gray-900; 
+}
+
+nav:first-of-type {
+  @apply border-none;
+}
+
+section:first-of-type {
+  @apply border-none;
+}

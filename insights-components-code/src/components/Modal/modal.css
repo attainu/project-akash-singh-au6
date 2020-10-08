@@ -1,0 +1,13 @@
+.full {
+  @apply h-screen w-full translate-y-6 pb-6;
+}
+
+.auto {
+  @apply h-auto w-full;
+}
+
+@media only screen and (max-width: 640px) {
+  .full {
+    @apply h-screen w-full translate-y-2 ml-0;
+  }
+}

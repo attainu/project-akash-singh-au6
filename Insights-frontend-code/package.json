@@ -1,0 +1,31 @@
+{
+  "name": "insights-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:style": "tailwind build styles/index.css -o styles/tailwind.css",
+    "dev": "npm run build:style && next dev",
+    "build": "next build",
+    "start": "npm run build:style && next start"
+  },
+  "dependencies": {
+    "@insights-app/insights-components": "^2.1.4",
+    "history": "^5.0.0",
+    "next": "9.5.3",
+    "postcss": "^8.1.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-stripe-checkout": "^2.6.3",
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "autoprefixer": "^10.0.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "node-sass": "^4.14.1",
+    "postcss-cli": "^7.1.2",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.1.2",
+    "tailwindcss": "^1.8.10"
+  }
+}
