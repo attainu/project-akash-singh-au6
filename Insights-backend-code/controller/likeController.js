@@ -42,7 +42,7 @@ export const getLikePerVideo = catchAsync(async(req, res, next) => {
     if (!video) {
         return next(new AppError('Video does not exsist'))
     }
-    const doc = await Like.findOne({ video })
+    const doc = await Like.findOne({ video: video })
 
     if (!doc) {
         return next(new AppError('No like found', 500))

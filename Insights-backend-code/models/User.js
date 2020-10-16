@@ -45,8 +45,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-userSchema.plugin(uniqueValidator);
-
 userSchema.pre('save', async function (next) {
     if(!this.isModified('password')) {
         return next();

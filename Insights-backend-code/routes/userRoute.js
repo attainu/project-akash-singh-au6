@@ -11,17 +11,16 @@ router.get('/logout', logout)
 router.post('/forgot-password', forgotPassword)
 router.patch('/reset-password/:token', resetPassword)
 
-router.use(protect)
-
-router.patch('/update-my-password', updatePassword);
-router.get('/me', getMe, getUser);
+router.patch('/update-password', protect, updatePassword);
+router.get('/me', protect, getMe, getUser);
 router.patch(
     '/update-me',
+    protect,
     updateMe
 );
-router.delete('/delete-me', deleteMe);
+router.delete('/delete-me', protect, deleteMe);
 
 router.route('/').get(getAllUsers)
 router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser)
 
-export default router;
+export default router

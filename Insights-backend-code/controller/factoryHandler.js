@@ -2,6 +2,7 @@ import catchAsync from '../utils/catchAsync.js'
 import AppError from '../utils/appError.js'
 import APIFeatures from '../utils/apiFunctions.js'
 
+//delete operation
 export const deleteOne = Model => 
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
@@ -15,7 +16,7 @@ export const deleteOne = Model =>
   }
 );
 
-
+//update operation
 export const updateOne = (Model, save) => 
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
@@ -37,7 +38,7 @@ export const updateOne = (Model, save) =>
   }
 );
 
-
+//create operation
 export const createOne = Model => 
   catchAsync(async (req, res, next) => {
     const doc = await Model.create(req.body);
@@ -50,6 +51,7 @@ export const createOne = Model =>
   }
 );
 
+//read one operation
 export const getOne = (Model, popOptions) => 
   catchAsync(async (req, res, next) => {
     let query = Model.findById(req.params.id);
@@ -67,6 +69,7 @@ export const getOne = (Model, popOptions) =>
   }
 );
 
+//read all opearation
 export const getAll = Model => 
   catchAsync(async (req, res, next) => {
     let filter = {};

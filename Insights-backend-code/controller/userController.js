@@ -12,13 +12,12 @@ export const updateMe = catchAsync(async(req, res, next) => {
     if(req.body.password || req.body.confirmPassword) {
         return next(new AppError('This fields are not allowed, please use /updateMyPassword to update the password!'))
     }
-    const filteredFields = filterObj(req.body, 'firstName','lastName','email')
-    if (req.files != undefined) filteredFields.photo = req.files[0].originalname;
 
-    const user = await User.findByIdAndUpdate(req.user.id, filteredFields, {
+    const user = await User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
         runValidators: true
-    })
+    }, (err, docs) => { if (err) { console.log(err) } })
+
     if(!user) {
         return next(new AppError('Something went wrong!', 500))
     }

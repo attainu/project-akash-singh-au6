@@ -1,9 +1,18 @@
 import '../styles/tailwind.css'
 import '@insights-app/insights-components/dist/index.css'
 import 'filepond/dist/filepond.min.css'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from '../redux/store'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Component {...pageProps} />
+      </PersistGate>
+    </Provider>
+  )
 }
 
 export default MyApp

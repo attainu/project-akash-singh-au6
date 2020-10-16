@@ -1,118 +1,47 @@
-import Comment from "../models/Comment.js";
+import Comment from '../models/Comment.js'
+import { getAll, deleteOne } from './factoryHandler.js'
+import Video from '../models/Video.js';
+import AppError from '../utils/appError.js'
+import catchAsync from '../utils/catchAsync.js'
 
-var commentController = {};
+//adding comment
+export const createComment = catchAsync(async (req, res, next) => {
+    const user = req.user
+    const video = await Video.findById({ _id: req.params.id })
 
-//Add comments
-commentController.createComment = async (req, res, next) => {
-    try {
-        var newComment = new Comment({
-            type: req.body.type,
-            comment: req.body.comment,
-            username: req.user.username
-        });
-
-        await Comment.addComment(newComment, (err, comment) => {
-            if (err) {
-                let message = "";
-                if (err.errors.comment) message = "Cannnot add comments! please try again ";
-                next(new AppError(message, 403));
-                return res.json({
-                    success: false,
-                    message: `${message} - Something went wrong :(`
-                });
-
-            } else {
-                return res.json({
-                    success: true,
-                    message: `comment added successfully! ==> ${comment}`
-                });
-            }
-        });
-
-    } catch (error) {
-        console.log(error);
-        res.json({
-            success: false,
-            message: error
-        })
+    if (!user || !video) {
+        return next(new AppError('Bad Request', 400))
     }
-}
+    const doc = await Comment.create({
+        type: req.body.type,
+        comments: req.body.userComment,
+        username: user.username,
+        videos: video
+    })
+    res.status(200).json({
+        message: 'success',
+        data: doc
+    })
+})
 
-//View comments on Post
-commentController.getComments = async(req, res) => {
-    try {
-        let commentId = req.user.videos.comments._id;
-       await Comment.getCommentsById(commentId, (err, comment) => {
-           if(!comment){
-            return res.json({
-                success: false,
-                message: "No comments!"
-            });
-           }
-           else{
-               res.json({
-                   success:true,
-                   comments:[comment]
-               })
-           }
-       })
-    } catch (error) {
-        console.log(error);
+//deleting of comment
+export const deleteComment = deleteOne(Comment)
+
+
+//to get comment for particular video
+export const getCommentPerVideo = catchAsync(async (req, res, next) => {
+    const video = await Video.findById({ _id: req.params.id })
+    if (!video) {
+        return next(new AppError('Video does not exsist'))
     }
-};
+    const doc = await Comment.findOne({ videos:video })
 
-//Edit comments
-commentController.updateOneComment = async (req, res) => {
-    try {
-        var Id = req.user.videos.comments._id;
-        console.log(req.body);
-        await comment.updateOne({
-            _id: Id,
-        }, {
-            $set: {
-                type: req.body.type,
-                comment: req.body.comment,
-                username: req.user.username
-            },
-        });
-
-        return res.json({
-            success: true,
-            message: "comment updated successfully!"
-        });
-    } 
-    
-    catch (error) {
-        console.log(error);
-        res.json({
-            success: false,
-            message: error
-        })
+    if (!doc) {
+        return next(new AppError('No Comment found', 500))
     }
-};
 
-
-//Delete comments
-commentController.deleteComment = (req, res) => {
-    try {
-        var Id = req.user.videos.comments._id;
-        comment.deleteOne({
-            _id: Id,
-        }).then(function () {
-            return res.json({
-                success: true,
-                message: "comment deleted successfully!"
-            });
-        });
-    } 
-
-    catch (error) {
-        console.log(error);
-          res.json({
-            success: false,
-            message: error
-        })
-    }
-};
-
-export default commentController;
+    res.status(200).json({
+        message: 'success',
+        data: doc
+    })
+})

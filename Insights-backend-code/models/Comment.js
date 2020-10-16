@@ -17,10 +17,14 @@ const CommentSchema = new mongoose.Schema({
     likes: {
         type: mongoose.Schema.ObjectId,
         ref: 'Like'
+    },
+    videos: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Video'
     }
 });
 
-UserSchema.plugin(uniqueValidator)
+CommentSchema.plugin(uniqueValidator)
 
 const Comment = mongoose.model('Comment', CommentSchema)
 
